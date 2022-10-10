@@ -1,2 +1,2 @@
 # VIVE
-Course repository
+Course repository for a course taught at VIVE – Det Nationale Forsknings- og Analysecenter for Velfærd
