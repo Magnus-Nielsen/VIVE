@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Machine learning course for VIVE"
+  favicon: images/favicon.ico
+  search: false
+  navbar:
+    background: rgb(144,26,30)
+    right:
+      - href: website.qmd
+        text: Home
+  page-footer:
+      center: "\n [![](images/UCPH_logo.png){width=25}](https://www.ku.dk/english/)"
+format:
+  html:
+    theme:
+      light: flatly 
+      dark: darkly
+    toc: false
+    toc-depth: 3
