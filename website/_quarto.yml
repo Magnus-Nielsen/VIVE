@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+include:
+  - .nojekyll
+
 website:
   title: "Machine learning course for VIVE"
   favicon: images/favicon.ico
