@@ -1,7 +1,7 @@
 [
   {
-    "objectID": "website.html",
-    "href": "website.html",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Machine learning course for VIVE",
     "section": "",
     "text": "Session #\nTopic\nLecture\nExercises\n\n\n\n\n1\nIntroduktion til kurset og ML\nSlides\nSee slides\n\n\n2\nIndførsel til Python\n\n\n\n\n3\nModel- og hyperparameterselektion\n\n\n\n\n4\nSupervised ML\n\n\n\n\n5\nUnsupervised ML\n\n\n\n\n6\nFortolkning af modeller\n\n\n\n\n7\nAlgorithmic audits\n\n\n\n\n8\nKausalitet – Træbaserede modeller\n\n\n\n\n9\nKausalitet - double machine learning"
