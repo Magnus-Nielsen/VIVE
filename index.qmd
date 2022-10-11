@@ -8,4 +8,4 @@
 | 6 | Fortolkning af modeller | | |
 | 7 | Algorithmic audits | | |
 | 8 | Kausalitet – Træbaserede modeller	| | |
-| 9 | Kausalitet -  double machine learning	| | |
+| 9 | Kausalitet -  Double machine learning	| | |
