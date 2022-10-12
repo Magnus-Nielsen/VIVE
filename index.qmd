@@ -1,11 +1,11 @@
-| Session # | Topic | Lecture | Exercises | Documents |
-| :--: | :-- | --: | --: | --: | 
-| 1 | Introduktion til kurset og ML | [Slides](slides/1_introduction.html) | *See slides* | [Anaconda guide](misc/1_anaconda_guide.pdf) |
-| 2	| Indførsel til Python | | | |
-| 3 | Model- og hyperparameterselektion	 | | | |
-| 4 | Supervised ML | | | |
-| 5 | Unsupervised ML | | | |
-| 6 | Fortolkning af modeller | | | |
-| 7 | Algorithmic audits | | | |
-| 8 | Kausalitet – Træbaserede modeller	| | | |
-| 9 | Kausalitet -  Double machine learning	| | | |
+| Session # | Topic | Lecture | Exercises | Solutions | Documents |
+| :--: | :-- | --: | --: | --: | --: | 
+| 1 | Introduktion til kurset og ML | [Slides](slides/1_introduction.html) | *See slides* | *N/A*  | [Anaconda guide](misc/1_anaconda_guide.pdf) |
+| 2	| Indførsel til Python | | | | |
+| 3 | Model- og hyperparameterselektion	 | | | | |
+| 4 | Supervised ML | | | | |
+| 5 | Unsupervised ML | | | | |
+| 6 | Fortolkning af modeller | | | | |
+| 7 | Algorithmic audits | | | | |
+| 8 | Kausalitet – Træbaserede modeller	| | | | |
+| 9 | Kausalitet -  Double machine learning	| | | | |
