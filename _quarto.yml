@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render: 
+    - "*.qmd"
+    - "*.ipynb"
+    - "!exercises_notebook/"
 
 website:
   title: "Machine learning course for VIVE"
@@ -15,6 +19,7 @@ website:
       center: "\n [![](images/UCPH_logo.png){width=25}](https://www.ku.dk/english/)"
 format:
   html:
+    page-layout: full
     theme:
       light: flatly 
       dark: darkly
