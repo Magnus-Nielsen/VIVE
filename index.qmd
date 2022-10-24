@@ -1,11 +1,11 @@
-| Session # | Topic | Lecture | Exercises as notebook | Exercises as html | Solutions | Documents |
-| :--: | :-- | --: | --: | --: | --: | --: | 
+| Session # | Topic | Lecture | Exercises | Solutions | Documents |
+| :--: | :-- | --: | --: | --: | --: | 
 | 1 | Introduktion til kurset og ML | [Slides](slides/1_introduction.html) | *See slides* | *See slides*  | *N/A*  | [Anaconda guide](misc/1_anaconda_guide.pdf) |
-| 2	| Indførsel til Python | [Slides](slides/2_python.html) | [Exercises](exercises_notebook/2_exercise.ipynb)| [Exercises](exercises_html/2_exercise.ipynb) | | [Reading](misc/2_reading.pdf)|
-| 3 | Model- og hyperparameterselektion	 | | | | |
-| 4 | Supervised ML | | | | |
-| 5 | Unsupervised ML | | | | |
-| 6 | Fortolkning af modeller | | | | |
-| 7 | Algorithmic audits | | | | |
-| 8 | Kausalitet – Træbaserede modeller	| | | | |
-| 9 | Kausalitet -  Double machine learning	| | | | |
+| 2	| Indførsel til Python | [Slides](slides/2_python.html) | [Exercises](exercises_notebook/2_exercise.ipynb) | | [Reading](misc/2_reading.pdf)|
+| 3 | Model- og hyperparameterselektion	 | | | |
+| 4 | Supervised ML | | | |
+| 5 | Unsupervised ML | | | |
+| 6 | Fortolkning af modeller | | | |
+| 7 | Algorithmic audits | | | |
+| 8 | Kausalitet – Træbaserede modeller	| | | |
+| 9 | Kausalitet -  Double machine learning	| | | |
