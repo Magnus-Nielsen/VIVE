@@ -15,8 +15,6 @@ website:
     right:
       - href: index.qmd
         text: Home
-  page-footer:
-      center: "\n [![](images/UCPH_logo.png){width=25}](https://www.ku.dk/english/)"
 format:
   html:
     page-layout: full
