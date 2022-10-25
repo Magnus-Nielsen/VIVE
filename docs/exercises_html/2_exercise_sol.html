@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Machine learning course for VIVE – exercise_sol</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../images/favicon.ico" rel="icon">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Machine learning course for VIVE</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+
+<section id="overview-of-notebook" class="level1">
+<h1>Overview of notebook</h1>
+<p>This notebook consists of two independent parts. The first about basic Python where you get familiar with the most important concepts and tools. The second part is a short introduction to pandas, which is a tool for structuring data in Python, and numpy, which is a tool for matrix calculations.</p>
+<section id="overview-of-python-content" class="level4">
+<h4 class="anchored" data-anchor-id="overview-of-python-content">Overview of Python content</h4>
+<p>In this integrated assignment and teaching module, we will learn the following things about basic Python: - Fundamental data types: numeric, string and boolean - Operators: numerical and logical - Conditional logic - Containers with indices - Loops: for and while - Reuseable code: functions, classes and modules</p>
+<p><em>Additional sources</em>:</p>
+<p>As always, there are many sources out there: Google is your best friend. However, here are some recommendations</p>
+<ul>
+<li><p>A book: <a href="https://wesmckinney.com/book/">Python for Data Analysis</a></p></li>
+<li><p>Videos: <a href="https://pythonprogramming.net/python-fundamental-tutorials/">pythonprogramming.net fundamental</a> (basics and intermediate)</p></li>
+<li><p>A tutorial website: <a href="https://docs.python.org/3/tutorial/introduction.html">The official python 3 tutorial</a> (sections 3, 4 and 5)</p></li>
+</ul>
+</section>
+</section>
+<section id="fundamentals-of-python" class="level1">
+<h1>1 Fundamentals of Python</h1>
+<section id="elementary-data-types" class="level2">
+<h2 class="anchored" data-anchor-id="elementary-data-types">Elementary Data Types</h2>
+<section id="examples-with-data-types" class="level4">
+<h4 class="anchored" data-anchor-id="examples-with-data-types">Examples with data types</h4>
+<p>Execute the code below to create a variable <code>A</code> as a float equal to 1.5:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">1.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Execute the code below to convert the variable <code>A</code> to an integer by typing:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(A) <span class="co"># rounds down, i.e. floor </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>1</code></pre>
+</div>
+</div>
+<p>We can do the same for converting to <code>float</code>, <code>str</code>, <code>bool</code>. Note some may at first come across as slightly odd:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>While some are simply not allowed:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#float('A') # Attempt at converting the string (text) 'A' to a number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="printing-stuff" class="level2">
+<h2 class="anchored" data-anchor-id="printing-stuff">Printing Stuff</h2>
+<p>An essential procedure in Python is <code>print</code>. Try executing some code - in this case, printing a string of text:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_str <span class="op">=</span> <span class="st">'I can do in Python, whatever I want'</span> <span class="co"># define a string of text</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_str) <span class="co"># print it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>I can do in Python, whatever I want</code></pre>
+</div>
+</div>
+<p>We can also print several objects at the same time. Try it!</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_var1 <span class="op">=</span> <span class="dv">33</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>my_var2 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_var1, my_var2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>33 2</code></pre>
+</div>
+</div>
+<p><em>Why do we print?</em> - It allows us to inspect values - For instance when trying to understand why a piece of code does not give us what we expect (i.e.&nbsp;debugging) - In particular helpful when inspecting intermediate output (within a function, loops etc.).</p>
+</section>
+<section id="numeric-operators" class="level2">
+<h2 class="anchored" data-anchor-id="numeric-operators">Numeric Operators</h2>
+<p><em>What numeric computations can python do?</em></p>
+<p>An operator in Python manipulates various data types.</p>
+<p>We have seen addition <code>+</code>. Other basic numeric operators: - multiplication <code>*</code>; - subtraction <code>-</code>; - division <code>/</code>; - power, <code>**</code></p>
+<p>Try executing the code below. Explain in words what the expression does.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">4</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>16</code></pre>
+</div>
+</div>
+<section id="problem-1.1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1.1">Problem 1.1</h3>
+<p>Having seen all the information, you are now ready for the first exercise. The exercise is found below in the indented text. &gt; <strong>Ex. 1.1:</strong> Add the two integers <code>3</code> and <code>5</code></p>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;1ba21d3fda7cf5a3a577ba877e44d428&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_001&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>answer_11 <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-1.2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1.2">Problem 1.2</h3>
+<p>Python also has a built in data type called a <em>string</em>. This is simply a sequence of letters/characters and can thus contain names, sentences etc. To define a string in python, you need to wrap your sentence in either double or single quotation marks. For example you could write <code>"Hello world!"</code>.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 1.2:</strong> In Python the <code>+</code> is not only used for numbers. Use the <code>+</code> to add together the three strings <code>"VIVE"</code>, <code>"Machine"</code> and <code>"Learning"</code>. What is the result?</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;ff93d6d2ae89a844313a5a6aa3dcf0be&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_002&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>answer_12 <span class="op">=</span> <span class="st">'VIVE'</span> <span class="op">+</span> <span class="st">'Machine'</span> <span class="op">+</span> <span class="st">'Learning'</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="boolean-operators" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-operators">Boolean Operators</h2>
+<p>Helpful advice: If you are not certain what a boolean value is, try and go back to <a href="#Fundmental-Data-Types">Fundamental Data Types</a></p>
+<p><em>What else can operators do?</em></p>
+<p>We can check the validity of a statement - using the equal operator, <code>==</code>, or not equal operator <code>!=</code>. Try the examples below:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">==</span> (<span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">!=</span> (<span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="op">!=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>In all these cases, the outcomes were boolean.</p>
+<p>We can also do numeric comparisons, such as greater than <code>&gt;</code>, greater than or equal <code>&gt;=</code>, etc.:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="op">&lt;=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p><em>How can we manipulate boolean values?</em></p>
+<p>Combining boolean values can be done using:</p>
+<ul>
+<li>the <code>and</code> operator - equivalent to <code>&amp;</code></li>
+<li>the <code>or</code> operator - equivalent to <code>|</code></li>
+</ul>
+<p>Let’s try this!</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">True</span> <span class="op">|</span> <span class="va">False</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">True</span> <span class="op">&amp;</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False</code></pre>
+</div>
+</div>
+<p><em>What other things can we do?</em></p>
+<p>We can negate/reverse the statement with the <code>not</code> operator:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="va">True</span> <span class="kw">and</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>True</code></pre>
+</div>
+</div>
+<section id="problem-1.3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1.3">Problem 1.3</h3>
+<p>Above you added two integers together, and got a result of <code>8</code>. Python separates numbers in two classes, the <em>integers</em> <span class="math inline">\(...,-1,0,1,2,...\)</span> and the <em>floats</em>, which are an approximation of the real numbers <span class="math inline">\(\mathbb{R}\)</span> (exactly how floats differ from reals is taught in introductory computer science courses).</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 1.3:</strong><br>
+* Add <code>1.7</code> to <code>4</code> * What type is <code>0.667 * 100</code> in Python?</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;c52229b7ed76daaffd6b3855b28dbac0&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_003&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>answer_131 <span class="op">=</span> <span class="fl">1.3</span> <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>answer_132 <span class="op">=</span> <span class="fl">0.667</span> <span class="op">*</span> <span class="dv">100</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="containers" class="level2">
+<h2 class="anchored" data-anchor-id="containers">Containers</h2>
+<p><em>What is a composite data type?</em></p>
+<p>A data type that can contain more than entry of data, e.g.&nbsp;multiple numbers.</p>
+<p><em>What are the most fundamental composite data types?</em></p>
+<p>Three of the most fundamental composite data types are the <em>tuple</em>, the <em>list</em> and the <em>dictionary</em>.</p>
+<ul>
+<li><p>The <em>tuple</em> is declared with round parentheses, e.g.&nbsp;<code>(1, 2, 3)</code> each element in the tuple is separated by a comma. One you have declared a tuple you cannot change it’s content without making a copy of the tuple first (you will read that the tuple is an <em>immutable</em> data type).</p></li>
+<li><p>The <em>list</em> is almost identical to the tuple. It is declared using square parentheses, e.g.&nbsp;<code>[1, 2, 3]</code>. Unlike the tuple, a list can be changed after definition, by adding, changing or removing elements. This is called a <em>mutable</em> data type.</p></li>
+<li><p>The <em>dictionary</em> or simply <em>dict</em> is also a mutable data type. Unlike the other data types the dict works like a lookup table, where each element of data stored in the dictionary is associated with a name. To look up an item in the dictionary you don’t need to know its position in the dictionary, only its name. The dict is defined with curly braces and a colon to separate the name from the value, e.g.&nbsp;<code>{'name_of_first_entry': 1, 'name_of_second_entry: 2}</code>.</p></li>
+</ul>
+<section id="problem-1.4" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1.4">Problem 1.4</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 1.4:</strong> Define the variable <code>y</code> as a list containing the elements <code>'k', 2, 'b', 9</code>. Also define a variable <code>z</code> which is a tuple containing the same elements. Try to access the 0th element of <code>y</code> (python is 0-indexed) and the 1st element of <code>z</code>.</p>
+<p><em>Hint:</em> To access the <em>n</em>’th element of a list/tuple write <code>myData[n]</code>, for example <code>y[0]</code> gets the 0th element of <code>y</code>.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;91b16fa055f9d94957be3ae9f63de88c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_004&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="st">'k'</span>, <span class="dv">2</span>, <span class="st">'b'</span>, <span class="dv">9</span>]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> (<span class="st">'k'</span>, <span class="dv">2</span>, <span class="st">'b'</span>, <span class="dv">9</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>answer_14_y0 <span class="op">=</span> y[<span class="dv">0</span>]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>answer_14_z1 <span class="op">=</span> z[<span class="dv">1</span>]</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="control-flow" class="level1">
+<h1>2 Control Flow</h1>
+<section id="if-then-syntax" class="level2">
+<h2 class="anchored" data-anchor-id="if-then-syntax">If-then syntax</h2>
+<p><em>Control flow</em> means writing code that controls the way data or information flows through the program. The concepts of control flow should be recognizable outside of coding as well. For example when you go shopping you might want to buy koldskål, but only <strong>if</strong> the kammerjunker are on sale. <strong>else</strong> you will buy icecream. These kinds of logic come up everywhere in coding; self driving cars should go forward only <strong>if</strong> the light is green, items should be listed for sale in a web shop only <strong>if</strong> they are in stock, stars should be put on the estimates <strong>if</strong> they are significant etc.</p>
+<p>Another kind of control flow deals with doing things repeatedly. For example dishes should be done <strong>while</strong> there are still dirty dishes to wash, <strong>for</strong> each student <strong>in</strong> a course a grade should be given, etc.</p>
+<p>In the following problems you will work with both kinds of control flow.</p>
+<p><em>How can we activate code based on data in Python?</em></p>
+<p>In Python, the syntax is easy with the <code>if</code> syntax.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> statement:  </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    code</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the example above, the block called <code>code</code> is run if the condition called <code>statement</code> is true (either a variable or an expression).</p>
+<section id="examples-using-if" class="level4">
+<h4 class="anchored" data-anchor-id="examples-using-if">Examples using if</h4>
+<p>Try to run the examples:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>my_statement <span class="op">=</span> (<span class="dv">4</span> <span class="op">==</span> <span class="dv">4</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> my_statement:  </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="st">"I'm being executed, yay!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>I'm being executed, yay!</code></pre>
+</div>
+</div>
+</section>
+<section id="introducing-an-alternative" class="level4">
+<h4 class="anchored" data-anchor-id="introducing-an-alternative">Introducing an alternative</h4>
+<p>If the statement in our condition is false, then we can execute other code with the <code>else</code> statement. Try the example below - and change the boolean value of <code>my_statement</code>.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_statement <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> my_statement:  </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="st">"I'm being executed, yay!"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="st">"Shoot! I'm still being executed!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shoot! I'm still being executed!</code></pre>
+</div>
+</div>
+</section>
+<section id="optional-material" class="level4">
+<h4 class="anchored" data-anchor-id="optional-material">Optional material</h4>
+<p>We have not covered the statements <code>break</code> and <code>continue</code>, or <code>try</code> and <code>except</code> which are also control flow statements. These are slightly more advanced, but it can be a good idea to look them up yourself.</p>
+<p>In Python the if/else logic consists of three keywords: <em>if</em>, <em>elif</em> (else if) and <em>else</em>. The if and elif keywords should be followed by a logical statement that is either <code>True</code> or <code>False</code>. The code that should be executed <code>if</code> the logic is <code>True</code> is written on the lines below the <code>if</code>, and should be indented one TAB (or 4 spaces). Finally all control flow statements must end with a colon.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 2.1:</strong> Read the code in the cell below. Assign a value to the variable <code>x</code> that makes the code print “Good job!”</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;f076063b1b6673a7cbf3468ed1872781&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_021&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span>:</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is too large"</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> x <span class="op">&gt;=</span> <span class="dv">3</span> <span class="kw">and</span> x <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Good job!"</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:   </span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is too small"</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Good job!</code></pre>
+</div>
+</div>
+<p>Above we used two different types of comparison: <code>&gt;=</code> and <code>&lt;</code>. To compare two values and check whether they are equal, python uses double equal signs <code>==</code> (remember a single = was used to assign values to a variable).</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 2.2:</strong> The code below draws a random number between 0 and 1 and stores in the variable <code>randnum</code>. Write an if/else block that defines a new variable which is equal to 1 if <code>randnum &lt;= 0.1</code> and is 0 if <code>randnum &gt; 0.1</code>.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;3428d16adf6b5e1e1566fbee1802a616&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_022&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>randnum <span class="op">=</span> random.uniform(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> randnum <span class="op">&lt;=</span> <span class="fl">0.1</span>:</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    answer_22 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    answer_22 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+<section id="for-loops" class="level4">
+<h4 class="anchored" data-anchor-id="for-loops">For loops</h4>
+<p>Control flow that does the same thing repeatedly is called a <em>loop</em>. In python you can loop through anything that is <em>iterable</em>, e.g.&nbsp;anything where it makes sense to say “for each element in this item, do whatever.”</p>
+<p>Lists, tuples and dictionaries are all iterable, and can thus be looped over. This kind of loop is called a <em>for loop</em>. The basic syntax is</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> element <span class="kw">in</span> some_iterable:</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    do_something(element)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>element</code> is a temporary name given to the current element reached in the loop, and <code>do_something</code> can be any valid python function applied to <code>element</code>.</p>
+<p>Example - try the following code:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> []</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]:</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    i_squared <span class="op">=</span> i <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    A.append(i_squared)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 9, 25]</code></pre>
+</div>
+</div>
+<p>For loops are smart when: iterating over files in a directory; iterating over specific set of columns.</p>
+<p><em>Quiz</em>: How does Python know where the code associated with inside of the loop begins?</p>
+<p><em>Answer</em>: By indenting the line with four whitespaces, see example above. This is the same as the if statements.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 2.3:</strong> Begin by initializing an emply list in the variable <code>answer_23</code> (simply write <code>answer_23 = []</code>). Then loop trough the list <code>y</code> that you defined in problem 1.4. For each element in <code>y</code>, multiply that element by 7 and <em>append</em> it to <code>answer_23</code>. (You can finish off by showing the content of <code>answer_23</code> after the loop has run.)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint:</em> To append data to a list you can write <code>answer_23.append(new_element)</code> where <code>new_element</code> is the new data that you want to append.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;4ce84a9aea2ebdf3b2c8d6a0917f9a23&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_023&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="st">'k'</span>, <span class="dv">2</span>, <span class="st">'b'</span>, <span class="dv">9</span>]</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>answer_23 <span class="op">=</span> [] </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> element <span class="kw">in</span> y:</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    answer_23.append(<span class="dv">7</span> <span class="op">*</span> element)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(answer_23)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['kkkkkkk', 14, 'bbbbbbb', 63]</code></pre>
+</div>
+</div>
+</section>
+<section id="while-loops" class="level4">
+<h4 class="anchored" data-anchor-id="while-loops">While loops</h4>
+<p>The other kind of loop in Python is the <em>while loop</em>. Instead of looping over an iterable, the <code>while</code> loop continues going as long as a supplied logical condition is True.</p>
+<p>Most commonly, the while loop is combined with a counting variable that keeps track of how many times the loop has been run.</p>
+<p>One specific application where a while loop can be useful is data collection on the internet (scraping) which is often open ended. Another application is when we are computing something that we do not know how long will take to compute, e.g.&nbsp;when a model is being estimated.</p>
+<p>The basic syntax is seen in the example below. This code will run 100 times before stopping. At each iteration, it checks that <code>i</code> is smaller than 100. If it is, it does something and adds 1 to the variable <code>i</code> before repeating.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    do_something()    </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the example below, we provide an example of what <code>do_something()</code> can be. Try the code below and explain why it outputs what it does.</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i <span class="op">&lt;</span> <span class="dv">5</span>):</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    L.append(i <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 3, 6, 9, 12]</code></pre>
+</div>
+</div>
+</section>
+<section id="problem-2.4" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2.4">Problem 2.4</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 2.4:</strong> Begin by defining an empty list. Write a while loop that runs from <span class="math inline">\(i=0\)</span> up to but not including <span class="math inline">\(i=1500\)</span>. In each loop, it should determine whether the current value of <code>i</code> is a multiple of 19. If it is, append the number to the list. (recall that <span class="math inline">\(i\)</span> is divisible by <span class="math inline">\(a\)</span> if <span class="math inline">\(i \text{ mod } a = 0\)</span>. The modulo operator in python is <code>%</code>)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint:</em> The <code>if</code> statement does not need to be followed by an <code>else</code>. You can simply code the <code>if</code> part and python will automatically skip it and continue if the logical condition is False.</p>
+<p><em>Hint:</em> Remember to increment <code>i</code> in each iteration. Otherwise the program will run forever. If this happens, press <em>kernel &gt; interrupt</em> in the menu bar.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;checksum&quot;:&quot;406b57c201af12ab050f0616b4e5470b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_024&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>answer_24 <span class="op">=</span> []</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">1500</span>:</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">19</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>        answer_24.append(i)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="reusable-code" class="level1">
+<h1>3 Reusable Code</h1>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p>If you have never programmed in anything but statistical software such as Stata or SAS, the concept of functions might be new to you. In python, a function is simply a “recipe” that is first written, and then later used to compute something.</p>
+<p>Conceptually, functions in programming are similar to functions in math. They have between <span class="math inline">\(0\)</span> and “<span class="math inline">\(\infty\)</span>” inputs, do some calculation using their inputs and then return between 1 and “<span class="math inline">\(\infty\)</span>” outputs.</p>
+<p>By making these recipes, we can save time by making a concise function that undertakes exactly the task that we want to complete.</p>
+<p>Python contains a large number of <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>. Below, you are given examples of how to use the most commonly used built-ins. You should make yourself comfortable using each of the functions shown below.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup for the examples. We define two lists to show you the built-in functions.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>]</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>, <span class="st">'g'</span>, <span class="st">'h'</span>, <span class="st">'i'</span>, <span class="st">'j'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The len(x) function gives you the length of the input</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(l2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>10</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The abs(x) function returns the absolute value of x</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(<span class="op">-</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>5</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The min(x) and max(x) functions return the minimum and maximum of the input.</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">min</span>(l1), <span class="bu">max</span>(l1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>(0, 90)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The map(function, Iterable) function applies the supplied function to each element in Iterable:</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the list() call just converts the result to a list</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">map</span>(<span class="bu">len</span>, l2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The range([start], stop, [step]) function returns a range of numbers from `start` to `stop`, in increments of `step`.</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The values in [] are optional.</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If no start value is set, it defaults to 0.</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If no step value is set it defaults to 1. </span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A stop value must always be set.</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Range from 0 to 100, step=1:"</span>, <span class="bu">range</span>(<span class="dv">100</span>))</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Range from 0 to 100, step=2:"</span>, <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">2</span>))</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Range from 10 to 65, step=3:"</span>, <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">65</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Range from 0 to 100, step=1: range(0, 100)
+Range from 0 to 100, step=2: range(0, 100, 2)
+Range from 10 to 65, step=3: range(10, 65, 3)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The reversed(x) function reverses the input.</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then loop trough it backwards</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>l1_reverse <span class="op">=</span> <span class="bu">reversed</span>(l1)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> l1_reverse:</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>90
+80
+70
+60
+50
+40
+30
+20
+10
+0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The enumerate(x) function returns the index of the item as well as the item itself in sequence.</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># With it, you can loop through things while keeping track of their position:</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>l2_enumerate <span class="op">=</span> <span class="bu">enumerate</span>(l2)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, element <span class="kw">in</span> l2_enumerate:</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(index, element)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 a
+1 b
+2 c
+3 d
+4 e
+5 f
+6 g
+7 h
+8 i
+9 j</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The zip(x,y,...) function "zips" together two or more iterables allowing you to loop through them pairwise:</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>l1l2_zip <span class="op">=</span> <span class="bu">zip</span>(l1, l2)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e1, e2 <span class="kw">in</span> l1l2_zip:</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(e1, e2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 a
+10 b
+20 c
+30 d
+40 e
+50 f
+60 g
+70 h
+80 i
+90 j</code></pre>
+</div>
+</div>
+<section id="the-how" class="level4">
+<h4 class="anchored" data-anchor-id="the-how">The how</h4>
+<p>You can also write your own python functions. A python function is defined with the <code>def</code> keyword, followed by a user-defined name of the function, the inputs to the function and a colon. On the following lines, the <em>function body</em> is written, indented by one TAB.</p>
+<p>Functions use the keyword <code>return</code> to signal what values the function should return after doing its calculations on the inputs. For example, we can define a function named <code>my_first_function</code> seen in the cell below. Run the code below and explain the printed output.</p>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_first_function(x): <span class="co"># takes input x</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    x_squared <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span> <span class="co"># x squared</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_squared <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Output for input of 0: '</span>, my_first_function(<span class="dv">0</span>))</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Output for input of 1: '</span>, my_first_function(<span class="dv">1</span>))</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Output for input of 2: '</span>, my_first_function(<span class="dv">2</span>))</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Output for input of 3: '</span>, my_first_function(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output for input of 0:  1
+Output for input of 1:  2
+Output for input of 2:  5
+Output for input of 3:  10</code></pre>
+</div>
+</div>
+<p>We can also make more complex functions. The function below, named <code>my_second_function</code>, takes two inputs <code>a</code> and <code>b</code> that is used to compute the values <span class="math inline">\(a^b\)</span> (written in python as <code>a ** b</code>) and <span class="math inline">\(b^a\)</span> and returns the larger of the two.</p>
+<p>Provide the function below with different inputs of <code>a</code> and <code>b</code>. Explain the output to yourself.</p>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_second_function(a, b):</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    v1 <span class="op">=</span> a <span class="op">**</span> b</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    v2 <span class="op">=</span> b <span class="op">**</span> a</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v1 <span class="op">&gt;</span> v2:</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> v1</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-3.1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3.1">Problem 3.1</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 3.1:</strong> Write a function called <code>minimum</code> that takes as input a list of numbers, and returns the index and value of the minimum number as a <code>tuple</code>. Use your function to calculate the index and value of the minimum number in the list <code>[-342, 195, 573, -234, 762, -175, 847, -882, 153, -22]</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint:</em> A <a href="https://stackoverflow.com/questions/25011078/what-does-pythonic-mean#:~:text=Pythonic%20means%20code%20that%20doesn,is%20intended%20to%20be%20used">“pythonic”</a> way to keep count of the index of the minimum value would be to loop over the list of numbers by using the <a href="#Functions">enumerate</a> function on the list of numbers.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_031&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> minimum(numbers):</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    min_num_index, min_num <span class="op">=</span> <span class="bu">float</span>(<span class="st">'inf'</span>), <span class="bu">float</span>(<span class="st">'inf'</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (number_index, value) <span class="kw">in</span> <span class="bu">enumerate</span>(numbers):</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="op">&lt;</span> min_num:</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>            min_num_index <span class="op">=</span> number_index</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>            min_num <span class="op">=</span> value</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> min_num_index, min_num</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # Alternative solution: </span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a><span class="co"># def minimum(numbers):</span></span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     min_value = min(numbers)</span></span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     idx_min_value = numbers.index(min_value)</span></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     return idx_min_value, min_value</span></span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="op">-</span><span class="dv">342</span>, <span class="dv">195</span>, <span class="dv">573</span>, <span class="op">-</span><span class="dv">234</span>, <span class="dv">762</span>, <span class="op">-</span><span class="dv">175</span>, <span class="dv">847</span>, <span class="op">-</span><span class="dv">882</span>, <span class="dv">153</span>, <span class="op">-</span><span class="dv">22</span>]</span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>answer_31 <span class="op">=</span> minimum(numbers)</span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-3.2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3.2">Problem 3.2</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 3.2:</strong> Write a function called <code>average</code> that takes as input a list of numbers, and returns the average of the values in the list. Use your function to calculate the average of the values <code>[-1, 2, -3, 4, 0, -4, 3, -2, 1]</code></p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_032&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(num_list):</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(num_list) <span class="op">/</span> <span class="bu">len</span>(num_list)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>answer_32 <span class="op">=</span> average([<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-3.3-optional" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3.3-optional">Problem 3.3 (OPTIONAL)</h3>
+<p>Recall that <a href="https://en.wikipedia.org/wiki/E_(mathematical_constant)">Eulers constant</a> <span class="math inline">\(e\)</span> can be calculated as <span class="math display">\[
+e=\lim_{n\rightarrow \infty}\left(1+\frac{x}{n}\right)^{n}
+\]</span> Of course we cannot compute the limit on a finite memory computer. Instead we can calculate approximations by taking <span class="math inline">\(n\)</span> large enough.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 3.3:</strong> Write a function named <code>eulers_e</code> that takes two inputs <code>x</code> and <code>n</code>, calculates <span class="math display">\[
+\left(1+\frac{x}{n}\right)^{n}
+\]</span> and returns this value. Use your function to calculate <code>eulers_e(1, 5)</code> and store this value in the variable <code>answer_33</code>.</p>
+</blockquote>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eulers_e(x, n):</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span> <span class="op">+</span> x <span class="op">/</span> n) <span class="op">**</span> n</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>answer_33 <span class="op">=</span> eulers_e(<span class="dv">1</span>, <span class="dv">5</span>) </span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-3.4-optional" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3.4-optional">Problem 3.4 (OPTIONAL)</h3>
+<p>The inverse of the exponential is the <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a>. Like the exponential function, there are limit definitions of the logarithm. One of these is <span class="math display">\[
+\log(x) = 2 \cdot \sum_{k=0}^{\infty} \frac{1}{2k+1} \left( \frac{x-1}{x+1} \right)^{2k+1}
+\]</span></p>
+<p>where <span class="math inline">\(\sum_{k=0}^{\infty}\)</span> signifies the sum of infinitely many elements, starting from <span class="math inline">\(k=0\)</span>. Each element in the sum takes the value <span class="math inline">\(\frac{1}{2k+1} \left( \frac{x-1}{x+1} \right)^{2k+1}\)</span> for some <span class="math inline">\(k\)</span>. As before, we must approximate this with a finite sum.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 3.4:</strong> Define another function called <code>natural_logarithm</code> which takes two inputs <code>x</code> and <code>k_max</code>. In the function body calculate <span class="math display">\[
+2 \cdot \sum_{k=0}^{k\_max} \frac{1}{2k+1} \left( \frac{x-1}{x+1} \right)^{2k+1}
+\]</span> and return this value.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint:</em> to calculate the sum, first initialize a value total = 0, loop through <span class="math inline">\(k\in \{0, 1, \ldots, k\_max\}\)</span> and compute <span class="math inline">\(\frac{1}{2k+1} \left( \frac{x-1}{x+1} \right)^{2k+1}\)</span>. Add the computed value to your total in each step of the loop. After finalizing the loop you can then multiply the total by 2 and return the result.</p>
+</blockquote>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> natural_logarithm(x, k_max):</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>([<span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> k <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> ((x <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(x <span class="op">+</span> <span class="dv">1</span>)) <span class="op">**</span> (<span class="dv">2</span> <span class="op">*</span> k <span class="op">+</span> <span class="dv">1</span>) </span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(k_max <span class="op">+</span> <span class="dv">1</span>)])</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(natural_logarithm(<span class="dv">1</span>,<span class="dv">100</span>))</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+</section>
+<section id="problem-3.5-optional" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3.5-optional">Problem 3.5 (OPTIONAL)</h3>
+<p>Just like numbers, strings and data types, python treats functions as an object. This means you can write functions, that take a function as input and functions that return functions after being executed. This is sometimes a useful tool to have when you need to add extra functionality to an already existing function, or if you need to write <em>function factories</em>.</p>
+<blockquote class="blockquote">
+<p><strong>Ex. 3.5:</strong> Write a function called <code>exponentiate</code> that takes one input named <code>func</code>. In the body of <code>exponentiate</code> define a nested function (i.e.&nbsp;a function within a function) called <code>with_exp</code> that takes two inputs <code>x</code> and <code>k</code>. The nested function should return <code>func(e, k)</code> where <code>e = eulers_e(x, k)</code>. The outer function should return the nested function <code>with_exp</code>, i.e.&nbsp;write something like</p>
+</blockquote>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exponentiate(func):</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> with_exp(x, k):</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>        e <span class="op">=</span> eulers_e(x, k)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> <span class="co">#[FILL IN]</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> with_exp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Call the <code>exponentiate</code> function on <code>natural_logarithm</code> and store the result in a new variable called <code>logexp</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint</em>: You will not get exactly the same result as you put in due to approximations and numerical accuracy.</p>
+</blockquote>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exponentiate(func):</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> with_exp(x, k):</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>        e <span class="op">=</span> eulers_e(x, k)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> func(e, k)</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> with_exp</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>logexp <span class="op">=</span> exponentiate(natural_logarithm)</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(logexp(<span class="dv">1</span>, <span class="dv">100</span>))</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9950330853168091</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="getting-more-general" class="level1">
+<h1>Getting More General</h1>
+<section id="modules" class="level4">
+<h4 class="anchored" data-anchor-id="modules">Modules</h4>
+<p>Whatever we attempt in programming, it is likely nowadays that someone has done it before us. Therefore, we can reuse code which allows to 1. save time by using others’ code, and 2. learn from others’ code.</p>
+<p>Moreover, often the code implemented by someone with more experience is likely to work better and faster than what we can come up with! That’s why we introduce modules. These are packages of Python code that we can load - and by doing that, we get access to powerful tools.</p>
+<p>Let’s see how modules work. Run the code below to load a module called <code>numpy</code> which allows us to work with linear algebra and other numeric tools.</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s create an <code>array</code> with <code>numpy</code>.</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> [row1, row2]</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>my_array <span class="op">=</span> np.array(table)</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>my_array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>array([[1, 2],
+       [3, 4]])</code></pre>
+</div>
+</div>
+<p><em>What is a <code>numpy</code> array?</em></p>
+<p>An n-dimensional container that can store specific data types, e.g.&nbsp;bool and float. The arrays come with certain available methods and tools. E.g. 2-d array can act like a matrix, in 3-d it can act like a tensor.</p>
+<p>Objects can have useful attributes and methods that are built-in. These are accessed using <code>"."</code> Example, an array can be transposed as follows:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>my_array.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>array([[1, 3],
+       [2, 4]])</code></pre>
+</div>
+</div>
+</section>
+<section id="optional-classes" class="level4">
+<h4 class="anchored" data-anchor-id="optional-classes">(Optional) Classes</h4>
+<p>In Python, we can also define our types of objects, which is known as <code>class</code>. Each class contains rules and properties that governs how objects of the class will behave. If you are curious and want to learn, which is totally optional, then read more <a href="https://docs.python.org/3/tutorial/classes.html">here</a> (note: quite technical). Otherwise move on.</p>
+</section>
+</section>
+<section id="pandas-for-data-structuring" class="level1">
+<h1>4 Pandas for data structuring</h1>
+<p>You may ask yourself: Why do we need to learn data structuring?</p>
+<p>Data never comes in the form of our model (unless you or someone else has done it in another program, which is <em>perfectly</em> fine). We need to ‘wrangle’ our data. As of right now, even the most advanced techniques needs data in a structured format to work with it.</p>
+<section id="an-overview" class="level2">
+<h2 class="anchored" data-anchor-id="an-overview">An Overview</h2>
+<p>Tabular data is like the table below. Each row is an observation which consist of two entries, one for each of the columns/fields, i.e.&nbsp;animal and day.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">index</th>
+<th style="text-align: left;">Animal</th>
+<th style="text-align: left;">Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Observation 1</td>
+<td style="text-align: left;">Elk</td>
+<td style="text-align: left;">July 1, 2019</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Observation 2</td>
+<td style="text-align: left;">Pig</td>
+<td style="text-align: left;">July 3, 2019</td>
+</tr>
+</tbody>
+</table>
+<p>What pandas provides is a smart way of structuring data. It has two fundamental data types, see below. These are essentially just container but come with a lot of extra functionality for structuring data and performing analysis.</p>
+<ul>
+<li><code>Series</code>: tabular data with a single column (field)
+<ul>
+<li>akin to a vector in mathematics</li>
+<li>has labelled columns (e.g.&nbsp;Animal and Date above) and named rows, called indices.</li>
+</ul></li>
+<li><code>DataFrame</code>: tabular data that allows for more than one column (multiple fields)
+<ul>
+<li>akin to a matrix in mathematics</li>
+</ul></li>
+</ul>
+<p>Run the code below to make your first pandas dataframe. Try to print it and explain the content it shows.</p>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[[<span class="dv">1</span>, <span class="dv">2</span>],[<span class="dv">3</span>, <span class="dv">4</span>],[<span class="dv">5</span>, <span class="dv">6</span>],[<span class="dv">7</span>, <span class="dv">8</span>]],</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">'i'</span>, <span class="st">'ii'</span>,<span class="st">'iii'</span>,<span class="st">'iv'</span>],</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">'A'</span>, <span class="st">'B'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The code below makes a series from a list. We can see that it contains all the four fundamental data types!</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="fl">1.2</span>, <span class="st">'abc'</span>, <span class="va">True</span>]</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>ser1 <span class="op">=</span> pd.Series(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now you may ask yourself: <em>why don’t we just use <code>numpy</code>?</em></p>
+<p>There are many reasons. <code>pandas</code> is easier for loading, structuring and making simple analysis of tabular data. However, in many cases, if you are working with custom data or need to performing fast and complex array computations, then <code>numpy</code> is a better option. If you are interested see discussion <a href="https://stackoverflow.com/questions/30067051/python-what-are-the-major-improvement-of-pandas-over-numpy-scipy">here</a>.</p>
+</section>
+<section id="switching-among-python-numpy-and-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="switching-among-python-numpy-and-pandas">Switching Among Python, Numpy and Pandas</h2>
+<p>Pandas dataframes can be thought of as numpy arrays with some additional stuff. Note that columns can have different datatypes!</p>
+<p>Most functions from <code>numpy</code> can be applied directly to Pandas. We can convert a DataFrame to a <code>numpy</code> array with <code>values</code> attribute:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df1.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>array([[1, 2],
+       [3, 4],
+       [5, 6],
+       [7, 8]], dtype=int64)</code></pre>
+</div>
+</div>
+<p>In Python, we can describe it as a <em>list of lists</em>.</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df1.values.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>[[1, 2], [3, 4], [5, 6], [7, 8]]</code></pre>
+</div>
+</div>
+<p>Both dataframes and series have indices which are both a blessing and a curse. These indices means that we can often convert a Series into a dictionary:</p>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>ser1.to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>{0: 1, 1: 1.2, 2: 'abc', 3: True}</code></pre>
+</div>
+</div>
+<p><strong><font color="red">WARNING!</font></strong>: Series indices are NOT unique thus we may lose data if we convert to a dict which requires unique keys.</p>
+</section>
+<section id="inspection" class="level2">
+<h2 class="anchored" data-anchor-id="inspection">Inspection</h2>
+<p>Often we want to see what our dataframe contains. This can be done by putting the dataframe at the end of our cell, then it will automatically be printed.</p>
+<p>The example below consist of 100 rows, with 5 columns of random data. We see that putting the dataframe in the end prints the dataframe.</p>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>np.random.rand(<span class="dv">100</span>, <span class="dv">5</span>), </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'C'</span>,<span class="st">'D'</span>,<span class="st">'E'</span>])</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>0.911622</td>
+      <td>0.374320</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.933523</td>
+      <td>0.830997</td>
+      <td>0.430150</td>
+      <td>0.235283</td>
+      <td>0.129003</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.900874</td>
+      <td>0.708393</td>
+      <td>0.950499</td>
+      <td>0.171770</td>
+      <td>0.503687</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.214144</td>
+      <td>0.735157</td>
+      <td>0.651842</td>
+      <td>0.580469</td>
+      <td>0.448282</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.756690</td>
+      <td>0.119340</td>
+      <td>0.269215</td>
+      <td>0.099179</td>
+      <td>0.411532</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.728482</td>
+      <td>0.232860</td>
+      <td>0.854766</td>
+      <td>0.784101</td>
+      <td>0.711444</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.706587</td>
+      <td>0.819365</td>
+      <td>0.090774</td>
+      <td>0.303287</td>
+      <td>0.224769</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.796380</td>
+      <td>0.783840</td>
+      <td>0.740566</td>
+      <td>0.747527</td>
+      <td>0.969443</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.433955</td>
+      <td>0.938853</td>
+      <td>0.932820</td>
+      <td>0.845110</td>
+      <td>0.583784</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.658342</td>
+      <td>0.699536</td>
+      <td>0.337664</td>
+      <td>0.424492</td>
+      <td>0.458236</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>We can also use <code>head</code> and the <code>tail</code> method that select respectively the first and last observations in a DataFrame. The code below prints the first four rows.</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> df2.head(n<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>0.911622</td>
+      <td>0.374320</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.933523</td>
+      <td>0.830997</td>
+      <td>0.430150</td>
+      <td>0.235283</td>
+      <td>0.129003</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.900874</td>
+      <td>0.708393</td>
+      <td>0.950499</td>
+      <td>0.171770</td>
+      <td>0.503687</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.214144</td>
+      <td>0.735157</td>
+      <td>0.651842</td>
+      <td>0.580469</td>
+      <td>0.448282</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="input-output" class="level2">
+<h2 class="anchored" data-anchor-id="input-output">Input-output</h2>
+<p>We can load and save dataframes from our computer or the internet. Try the code below to save our dataframe as a CSV file called <code>my_data.csv</code>. If you are unsure what a CSV file is then check <a href="https://en.wikipedia.org/wiki/Comma-separated_values">the Wikipedia description</a>.</p>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df3.to_csv(<span class="st">'my_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Loading data is just as easy. Some data sources are open and easy to collect data from. They do not require formatting as they come in a table format. The code below load a CSV file on school test data from NYC.</p>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="op">=</span> <span class="st">'https://data.cityofnewyork.us/api/views/zt9s-n5aj/rows.csv'</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="op">=</span> pd.read_csv(my_url)</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>my_df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>DBN</th>
+      <th>School Name</th>
+      <th>Number of Test Takers</th>
+      <th>Critical Reading Mean</th>
+      <th>Mathematics Mean</th>
+      <th>Writing Mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M292</td>
+      <td>Henry Street School for International Studies</td>
+      <td>31.0</td>
+      <td>391.0</td>
+      <td>425.0</td>
+      <td>385.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M448</td>
+      <td>University Neighborhood High School</td>
+      <td>60.0</td>
+      <td>394.0</td>
+      <td>419.0</td>
+      <td>387.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M450</td>
+      <td>East Side Community High School</td>
+      <td>69.0</td>
+      <td>418.0</td>
+      <td>431.0</td>
+      <td>402.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M458</td>
+      <td>SATELLITE ACADEMY FORSYTH ST</td>
+      <td>26.0</td>
+      <td>385.0</td>
+      <td>370.0</td>
+      <td>378.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M509</td>
+      <td>CMSP HIGH SCHOOL</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>01M515</td>
+      <td>Lower East Side Preparatory High School</td>
+      <td>154.0</td>
+      <td>314.0</td>
+      <td>532.0</td>
+      <td>314.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>01M539</td>
+      <td>New Explorations into Sci, Tech and Math HS</td>
+      <td>47.0</td>
+      <td>568.0</td>
+      <td>583.0</td>
+      <td>568.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>01M650</td>
+      <td>CASCADES HIGH SCHOOL</td>
+      <td>35.0</td>
+      <td>411.0</td>
+      <td>401.0</td>
+      <td>401.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>01M696</td>
+      <td>BARD HIGH SCHOOL EARLY COLLEGE</td>
+      <td>138.0</td>
+      <td>630.0</td>
+      <td>608.0</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>02M047</td>
+      <td>AMERICAN SIGN LANG ENG DUAL</td>
+      <td>11.0</td>
+      <td>405.0</td>
+      <td>415.0</td>
+      <td>385.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="working-with-weather-data" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-weather-data">Working with weather data</h4>
+<p>We will now work with a dataset regarding weather. Our source will be National Oceanic and Atmospheric Administration (NOAA) which have a global data collection going back a couple of centuries. This collection is called Global Historical Climatology Network (GHCN). The data contains daily weather recorded at the weather stations. A description of GHCN can be found <a href="https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/readme-by_year.txt">here</a>.</p>
+</section>
+<section id="problem-4.1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.1">Problem 4.1</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 4.1:</strong> Use Pandas’ CSV reader to fetch daily data weather from 1863 for various stations - available somewhere on your common drive. If you cannot find it, it can also be found at this <a href="https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year">website</a>.</p>
+<p><em>Hint</em>: you will need to give <code>read_csv</code> some keywords. Here are some suggestions - Specify the path, using either a string or through the <code>pathlib</code> module, <a href="https://docs.python.org/3/library/pathlib.html">see documentation</a> (nice for interoperability between macOS + Windows and relative paths). - for <a href="https://www.winzip.com/win/en/gz-file.html">compressed files</a> you may need to specify the keyword <code>compression</code> when calling the <code>.read_csv</code> method. - <code>header</code> can be specified as the CSV has no column names.</p>
+</blockquote>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_041&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using online url</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/1863.csv.gz"</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ASSUMING data is in a folder called 'data':</span></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co"># using string </span></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="co">#path = 'data/1863.csv.gz'</span></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="co"># using pathlib</span></span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="co">#from pathlib import Path</span></span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a><span class="co">#cwd = Path.cwd()</span></span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a><span class="co">#path = cwd / 'data' / '1863.csv.gz'</span></span>
+<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a>df_weather <span class="op">=</span> pd.read_csv(</span>
+<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>    path,</span>
+<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>    compression<span class="op">=</span><span class="st">'gzip'</span>, <span class="co"># decompress gzip</span></span>
+<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a>    header<span class="op">=</span><span class="va">None</span> <span class="co"># use no header information from the csv</span></span>
+<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="selecting-rows-and-columns" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-rows-and-columns">Selecting Rows and Columns</h2>
+<p>In pandas there are two canonical ways of accessing subsets of a dataframe. - The <code>iloc</code> attribute: access rows and columns using integer indices (like a list). - The <code>loc</code> attribute: access rows and columns using immutable keys, e.g.&nbsp;numbers, strings (like a dictionary).</p>
+<p>In what follows we will describe some different way of selection using <code>.iloc</code> and <code>.loc</code> as well as a simpler way of simply accesing the dataframe using <code>[]</code>. The different ways are meant to give you an overview.</p>
+<section id="using-list-of-keysindices" class="level4">
+<h4 class="anchored" data-anchor-id="using-list-of-keysindices">Using list of keys/indices</h4>
+<p>Below is an example of using the <code>iloc</code> attribute to select specific rows:</p>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="co"># show df1 before indexing it with .iloc[]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>i</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>ii</th>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>iii</th>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>iv</th>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>my_irows <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">3</span>]</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>df1.iloc[my_irows]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>i</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>iv</th>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We can select columns and rows simultaneously. Below is an example of using the <code>loc</code> attribute, which does that:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>my_rows <span class="op">=</span> [<span class="st">'i'</span>, <span class="st">'iii'</span>]</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>my_cols <span class="op">=</span> [<span class="st">'A'</span>]</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>df1.loc[my_rows, my_cols]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>i</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>iii</th>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="using-thresholds" class="level4">
+<h4 class="anchored" data-anchor-id="using-thresholds">Using thresholds</h4>
+<p>We can also use <code>iloc</code> and <code>loc</code> for selecting rows and/or columns below or above some treshold, see below. Note that whether or not the <code>:</code> is on front determines whether it is above or below.</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>df2.iloc[:<span class="dv">3</span>, :<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>0.911622</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.933523</td>
+      <td>0.830997</td>
+      <td>0.430150</td>
+      <td>0.235283</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.900874</td>
+      <td>0.708393</td>
+      <td>0.950499</td>
+      <td>0.171770</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="using-boolean-data" class="level4">
+<h4 class="anchored" data-anchor-id="using-boolean-data">Using boolean data</h4>
+<p>If we provide the dataframe with a boolean, it will select rows (also works with <code>iloc</code> and <code>loc</code>). We will see soon that this is an extremely useful way of selecting certain rows.</p>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>df3[[<span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>0.911622</td>
+      <td>0.374320</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.214144</td>
+      <td>0.735157</td>
+      <td>0.651842</td>
+      <td>0.580469</td>
+      <td>0.448282</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="selecting-columns" class="level4">
+<h4 class="anchored" data-anchor-id="selecting-columns">Selecting columns</h4>
+<p>Often we need to select specific columns. If we provide the dataframe with a list of column names it will make a dataframe keep only these columns:</p>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>df3[[<span class="st">'B'</span>, <span class="st">'D'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>B</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.094683</td>
+      <td>0.911622</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.830997</td>
+      <td>0.235283</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.708393</td>
+      <td>0.171770</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.735157</td>
+      <td>0.580469</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-4.2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.2">Problem 4.2</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 4.2:</strong> Select the <em>four</em> left-most columns which contain: station identifier, data, observation type, observation value. Rename them as <em>‘station’, ‘datetime’, ‘obs_type’, ‘obs_value’</em>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint:</em> Renaming can be done with <code>df.columns = cols</code> where <code>cols</code> is a list of column names.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_042&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>df_weather <span class="op">=</span> df_weather.iloc[:, :<span class="dv">4</span>] <span class="co"># select only first four columns</span></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> [<span class="st">'station'</span>, <span class="st">'datetime'</span>, <span class="st">'obs_type'</span>, <span class="st">'obs_value'</span>]</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>df_weather.columns <span class="op">=</span> column_names <span class="co"># set column names</span></span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="basic-operations" class="level2">
+<h2 class="anchored" data-anchor-id="basic-operations">Basic Operations</h2>
+<p>How do we perform elementary operations like we learned for basic Python? E.g. numeric operations such as summation (<code>+</code>) or logical operations such as greater than (<code>&gt;</code>). Actually we are in luck - they are exactly the same.</p>
+<p>Let’s see how it works for numeric data using a numpy array (works the same way as Pandas).</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>my_arr1 <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>my_arr2 <span class="op">=</span> my_arr1 <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>my_arr2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<pre><code>array([4, 9, 4, 1, 1])</code></pre>
+</div>
+</div>
+<p><em>Can we do the same with two vectors?</em> Yes, we can also do elementwise addition, multiplication, subtractions etc. of series. Example:</p>
+<div class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>my_arr1 <span class="op">+</span> my_arr2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>array([ 6, 12,  6,  2,  2])</code></pre>
+</div>
+</div>
+</section>
+<section id="changing-and-copying-data" class="level2">
+<h2 class="anchored" data-anchor-id="changing-and-copying-data">Changing and Copying Data</h2>
+<p>Everything in the dataframe can be changed. For instance, we can also update our dataframe with new values, e.g.&nbsp;by making new variables or overwriting existing ones. In the example below we add a new column to add a DataFrame.</p>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">'F'</span>] <span class="op">=</span> df2[<span class="st">'A'</span>] <span class="op">&gt;</span> df2[<span class="st">'D'</span>]</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>df2.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>0.911622</td>
+      <td>0.374320</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.933523</td>
+      <td>0.830997</td>
+      <td>0.430150</td>
+      <td>0.235283</td>
+      <td>0.129003</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.900874</td>
+      <td>0.708393</td>
+      <td>0.950499</td>
+      <td>0.171770</td>
+      <td>0.503687</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.214144</td>
+      <td>0.735157</td>
+      <td>0.651842</td>
+      <td>0.580469</td>
+      <td>0.448282</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.756690</td>
+      <td>0.119340</td>
+      <td>0.269215</td>
+      <td>0.099179</td>
+      <td>0.411532</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.634309</td>
+      <td>0.958614</td>
+      <td>0.330676</td>
+      <td>0.454304</td>
+      <td>0.098996</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.327120</td>
+      <td>0.263946</td>
+      <td>0.884487</td>
+      <td>0.238092</td>
+      <td>0.283622</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.180478</td>
+      <td>0.433104</td>
+      <td>0.719118</td>
+      <td>0.188784</td>
+      <td>0.674121</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.645979</td>
+      <td>0.667443</td>
+      <td>0.978808</td>
+      <td>0.531604</td>
+      <td>0.241179</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.940160</td>
+      <td>0.744014</td>
+      <td>0.657913</td>
+      <td>0.348178</td>
+      <td>0.940021</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong><font color="red">WARNING!</font></strong>: If you work on a subset of data from another dataframe, then this dataframe is what is known as a <em>view</em>! Therefore, all changes made in the view will also be made in the original version.</p>
+<p>In the example below, we try to change the dataframe <code>df2</code> which is a view of <code>df3</code>, and we get a <em>warning</em>. Thus, changes to <code>df3</code> also happen in <code>df2</code>. Notice that we can also use <code>loc</code> for changing the data.</p>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>df3.loc[:,<span class="st">'D'</span>] <span class="op">=</span> df3[<span class="st">'A'</span>] <span class="op">-</span> df3[<span class="st">'E'</span>]</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2[<span class="st">'D'</span>].head(<span class="dv">3</span>), <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df3[<span class="st">'D'</span>].head(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0   -0.083219
+1    0.804520
+2    0.397187
+Name: D, dtype: float64 
+
+0   -0.083219
+1    0.804520
+2    0.397187
+Name: D, dtype: float64</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\wkg579\AppData\Local\Temp\ipykernel_18024\2462267356.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df3.loc[:,'D'] = df3['A'] - df3['E']</code></pre>
+</div>
+</div>
+<p>To avoid the problem of having a <em>view</em>, we can instead <em>copy</em> the data as in the example below. Try to verify that if you change things in <code>df4</code> things do not change in <code>df2</code>.</p>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> df2.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify that the code from above doesn't throw the same "SettingWithCopyWarning" </span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># when using the copied dataframe, df4, instead of df3.</span></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>df4.loc[:, <span class="st">'D'</span>] <span class="op">=</span> df4[<span class="st">'A'</span>] <span class="op">-</span> df4[<span class="st">'E'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="problem-4.3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.3">Problem 4.3</h3>
+<blockquote class="blockquote">
+<p><strong>Ex. 4.3:</strong> Further, select the subset of data for the station <code>UK000056225</code> and only observations for maximal temperature. Make a copy of the DataFrame and store this in the variable <code>df_select</code>. Explain in a one or two sentences how copying works. Write your answer in a multi line comment like <code>""" Your answer here """</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint</em>: The <code>&amp;</code> operator works elementwise on boolean series (like <code>and</code> in core python). This allows to combine conditions for selections.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_043&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>select_stat <span class="op">=</span> df_weather.station <span class="op">==</span> <span class="st">'UK000056225'</span> <span class="co"># boolean: first weather station</span></span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>select_tmax <span class="op">=</span> df_weather.obs_type <span class="op">==</span> <span class="st">'TMAX'</span> <span class="co"># boolean: maximal temp.</span></span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>select_rows <span class="op">=</span> select_stat <span class="op">&amp;</span> select_tmax <span class="co"># row selection - require both conditions</span></span>
+<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a>df_select <span class="op">=</span> df_weather[select_rows].copy() <span class="co"># apply selection and copy</span></span>
+<span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-9"><a href="#cb110-9" aria-hidden="true" tabindex="-1"></a>explanation <span class="op">=</span> <span class="st">"""Copying of the dataframe breaks the dependency with original DataFrame `df_weather`.</span></span>
+<span id="cb110-10"><a href="#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="st">If dependency is not broken, then changing values in one of the two dataframes </span></span>
+<span id="cb110-11"><a href="#cb110-11" aria-hidden="true" tabindex="-1"></a><span class="st">would imply changes in the other."""</span></span>
+<span id="cb110-12"><a href="#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(explanation)</span>
+<span id="cb110-13"><a href="#cb110-13" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Copying of the dataframe breaks the dependency with original DataFrame `df_weather`.
+If dependency is not broken, then changing values in one of the two dataframes 
+would imply changes in the other.</code></pre>
+</div>
+</div>
+</section>
+<section id="problem-4.4" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.4">Problem 4.4</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 4.4:</strong> Make sure that max temperature is correctly formated (how many decimals should we add? one? Look through this .txt file for an answer https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt). Make a new column called <code>TMAX_F</code> where you have converted the temperature variables to Fahrenheit.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint</em>: Conversion is <span class="math inline">\(F = 32 + 1.8*C\)</span> where <span class="math inline">\(F\)</span> is Fahrenheit and <span class="math inline">\(C\)</span> is Celsius.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_044&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In the readme.txt file downloaded from the link given in the exercise text,</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="co"># it can be seen, in the section 'III. FORMAT OF DATA FILES', that </span></span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="co"># TMAX = Maximum temperature (tenths of degrees C). </span></span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Therefore, we convert to degrees celcius by dividing by 10. </span></span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'obs_value'</span>] <span class="op">=</span> df_select[<span class="st">'obs_value'</span>] <span class="op">/</span> <span class="dv">10</span> </span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'TMAX_F'</span>] <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="fl">1.8</span> <span class="op">*</span> df_select[<span class="st">'obs_value'</span>]</span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="changing-and-rearranging-indices" class="level2">
+<h2 class="anchored" data-anchor-id="changing-and-rearranging-indices">Changing and Rearranging Indices</h2>
+<p>In addition to replacing values of our data, we can also rearrange the order of variables and rows as well as make new ones. We have already seen how to change column names but we can also reset the index, as seen below. Alternatively, we can set our own custom index using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.set_index.html"><code>set_index</code></a>, with temporal data etc. which provides the DataFrame with new functionality.</p>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>df1_new_index <span class="op">=</span> df1.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>df1_new_index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A powerful tool for re-organizing the data is to <code>sort</code> the data. That is, we can re-organize rows (or columns) such that they are ascending or descending according to one or more columns.</p>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>df3_sorted <span class="op">=</span> df3.sort_values(by<span class="op">=</span>[<span class="st">'A'</span>,<span class="st">'B'</span>], ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>df3_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>0.214144</td>
+      <td>0.735157</td>
+      <td>0.651842</td>
+      <td>-0.234138</td>
+      <td>0.448282</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.291100</td>
+      <td>0.094683</td>
+      <td>0.550356</td>
+      <td>-0.083219</td>
+      <td>0.374320</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.900874</td>
+      <td>0.708393</td>
+      <td>0.950499</td>
+      <td>0.397187</td>
+      <td>0.503687</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.933523</td>
+      <td>0.830997</td>
+      <td>0.430150</td>
+      <td>0.804520</td>
+      <td>0.129003</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="problem-4.5" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.5">Problem 4.5</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 4.5:</strong> Inspect the indices in <code>df_select</code>. Are they following the sequence of natural numbers, 0,1,2,…? If not, reset the index and make sure to drop the old.</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_045&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>df_select <span class="op">=</span> df_select.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-4.6" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4.6">Problem 4.6</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 4.6:</strong> Make a new DataFrame <code>df_sorted</code> where you have sorted by the maximum temperature. What is the date for the first and last observations?</p>
+</blockquote>
+<div class="cell" data-nbgrader="{&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;problem_046&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>df_sorted <span class="op">=</span> df_select.sort_values(by<span class="op">=</span>[<span class="st">'obs_value'</span>])</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Date for the min temp: </span><span class="sc">{</span>df_sorted[<span class="st">'datetime'</span>]<span class="sc">.</span>iloc[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>, </span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Date for the max temp: </span><span class="sc">{</span>df_sorted[<span class="st">'datetime'</span>]<span class="sc">.</span>iloc[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Date for the min temp: 18631231
+Date for the max temp: 18630714</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="pandas-with-datetimes-and-aggregations-optional" class="level1">
+<h1>5 Pandas with datetimes and aggregations (OPTIONAL)</h1>
+<p>Pandas supports many more functions, many of which are covered in the Python for Data Analysis (PDA) book. These could be things such as more data cleaning (<a href="https://wesmckinney.com/book/data-cleaning.html">PDA chapter 7</a>) merging and joining (<a href="https://wesmckinney.com/book/data-wrangling.html">PDA chapter 8</a>), groupby functionality (<a href="https://wesmckinney.com/book/data-aggregation.html">PDA chapter 10</a>), datetimes (<a href="https://wesmckinney.com/book/time-series.html">PDA chapter 11</a>) and more.</p>
+<section id="problem-5.1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5.1">Problem 5.1</h3>
+<p>When working with datetimes, it is common to get them as pure strings from the data source. In the weather data, it is a string of the format YYYYMMDD, which can be converted to a date pandas understands using the pandas functionality <code>to_datetime()</code>, with documentation <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html">here</a>.</p>
+<blockquote class="blockquote">
+<p><strong>Ex 5.1:</strong> Convert the string date to a pandas date and add this to a new column called <code>datetime_dt</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Hint: When converting string dates to pandas dates, it is always wise to specify the format. PDA has a <a href="https://wesmckinney.com/book/time-series.html#tbl-table_datetime_formatting">table with format information</a></p>
+</blockquote>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>datetime_dt <span class="op">=</span>  pd.to_datetime(df_select[<span class="st">'datetime'</span>], <span class="bu">format</span> <span class="op">=</span> <span class="st">'%Y%m</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'datetime_dt'</span>] <span class="op">=</span> datetime_dt</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-5.2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5.2">Problem 5.2</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 5.2:</strong> Create a new column with the month of the observation</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Hint: If a Series/column has a date in it, the datetime functionality can be accessed by calling .dt on it, which can be followed by further commands.</p>
+</blockquote>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> datetime_dt.dt.month</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'month'</span>] <span class="op">=</span> month</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-5.3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5.3">Problem 5.3</h3>
+<p>A very powerful method to analyse data is the split-apply-combine method. In pandas this corresponds to the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html">groupby</a> functionality.</p>
+<blockquote class="blockquote">
+<p><strong>Ex 5.3:</strong> Compute the mean and median maximum daily temperature for each month on the dataframe <code>df_select</code> using the <em>split-apply-combine</em> procedure. Store the results in new columns <code>tmax_mean</code> and <code>tmax_median</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Hint</em>: The groupby functionality can be ‘unwrapped’ using the <a href="https://wesmckinney.com/book/data-aggregation.html">transform method</a>, such that it retains the original length. This is <em>very</em> handy when trying to create new columns, and not reporting statistics.</p>
+</blockquote>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'tmax_mean'</span>] <span class="op">=</span> df_select.groupby([<span class="st">'month'</span>])[<span class="st">'obs_value'</span>].transform(<span class="st">'mean'</span>)</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>df_select[<span class="st">'tmax_median'</span>] <span class="op">=</span> df_select.groupby([<span class="st">'month'</span>])[<span class="st">'obs_value'</span>].transform(<span class="st">'median'</span>)</span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="linear-regression-with-numpy-optional" class="level1">
+<h1>6 Linear regression with numpy (OPTIONAL)</h1>
+<p>NOTE: If you previosly skipped <code>3.3</code>, <code>3.4</code> or <code>3.5</code>, you might benefit from completing these before continuing with this <code>numpy</code> section.</p>
+<p>Python supports all of the regular matrix computations, if one wishes to implement a predictor or estimator on their own.</p>
+<p>To showcase this, you will in this example be tasked to convert a subset of a DataFrame into a numpy array. Based on this, you can implement estimators such as the ordinary least squares estimator:</p>
+<p><span class="math display">\[\hat \beta = (X'X)^{-1}(X'y)\]</span></p>
+<p>To test this out, we will estimate how age, passenger class and fare influenced chance of survival for the passengers of Titanic.</p>
+<section id="problem-6.1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6.1">Problem 6.1</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 6.1:</strong> Load the <code>titanic</code> dataset from seaborn using the <code>load_dataset</code> function. Remove any rows with missing values.</p>
+<p><em>Hint</em>: - The dataset is aptly named <code>titanic</code>. - <code>pandas</code> has a built-in function called <code>dropna</code>.</p>
+</blockquote>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>df_titanic <span class="op">=</span> sns.load_dataset(<span class="st">'titanic'</span>)</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>df_titanic <span class="op">=</span> df_titanic.dropna()</span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-6.2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6.2">Problem 6.2</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 6.2:</strong> Convert the columns <code>age</code>, <code>pclass</code> and <code>fare</code> to an array with dimensions <code>N*3</code> and the column <code>survived</code> to an array with dimensions <code>N*1</code></p>
+<p><em>Hint</em>: Try subsetting the data in the DataFrame and then converting it to an array</p>
+</blockquote>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pandas method</span></span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_titanic[[<span class="st">'age'</span>,<span class="st">'pclass'</span>,<span class="st">'fare'</span>]].to_numpy()</span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_titanic[[<span class="st">'survived'</span>]].to_numpy()</span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Using as input to np.array</span></span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a>X_alt <span class="op">=</span> np.array(df_titanic[[<span class="st">'age'</span>,<span class="st">'pclass'</span>,<span class="st">'fare'</span>]])</span>
+<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a>y_alt <span class="op">=</span> np.array(df_titanic[[<span class="st">'survived'</span>]])</span>
+<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalence</span></span>
+<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (X <span class="op">==</span> X_alt).<span class="bu">all</span>()</span>
+<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (y <span class="op">==</span> y_alt).<span class="bu">all</span>()</span>
+<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-6.3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6.3">Problem 6.3</h3>
+<blockquote class="blockquote">
+<p><strong>Ex 6.3:</strong> Implement the ordinary least squares estimator with no intercept using <code>numpy</code></p>
+<p><em>Hint</em>: <code>numpy</code> offers a lot of methods for arrays - <a href="https://numpy.org/doc/stable/reference/routines.linalg.html">numpy.linalg</a> offers a lot of functionality for linear algebra - <code>@</code> calculates a dot-product - <code>inv</code> inverts a matrix - If you’ve imported <code>numpy</code> as <code>np</code>, these functions can be accessed as <code>np.linalg.function</code> - You can also import specific functions as <code>from numpy.linalg import function</code> - This can reduce the clutter in your code (e.g.&nbsp;<code>np.linalg.inv(X)</code> versus <code>inv(X)</code>)</p>
+</blockquote>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">BEGIN</span><span class="co"> SOLUTION</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> inv(X.T<span class="op">@</span>X)<span class="op">@</span>(X.T<span class="op">@</span>y)</span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalence with sklearn method</span></span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-8"><a href="#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb123-9"><a href="#cb123-9" aria-hidden="true" tabindex="-1"></a>OLS <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb123-10"><a href="#cb123-10" aria-hidden="true" tabindex="-1"></a>OLS.fit(X, y)</span>
+<span id="cb123-11"><a href="#cb123-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-12"><a href="#cb123-12" aria-hidden="true" tabindex="-1"></a><span class="co"># np.isclose instead of == due to numerical inaccuracies</span></span>
+<span id="cb123-13"><a href="#cb123-13" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(OLS.coef_, beta.T).<span class="bu">all</span>()</span>
+<span id="cb123-14"><a href="#cb123-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-15"><a href="#cb123-15" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
