@@ -2,7 +2,7 @@
 | :--: | :-- | --: | --: | --: | --: | --: | 
 | 1 | Introduktion til kurset og ML | [Slides](slides/1_introduction.html) | *See slides* |*N/A*  | [Anaconda guide](misc/1_anaconda_guide.pdf) |
 | 2	| Indførsel til Python | [Slides](slides/2_python.html) | [Notebook](exercises_notebook/2_exercise.ipynb) /  [HTML](exercises_html/2_exercise.ipynb) | [Notebook](exercises_notebook/2_exercise_sol.ipynb) / [HTML](exercises_html/2_exercise_sol.ipynb) | [Reading](misc/2_reading.pdf)|
-| 3 | Model- og hyperparameterselektion	 | | | | [Reading](misc/3_reading.pdf) |
+| 3 | Model- og hyperparameterselektion	 | [Slides](slides/3_model_selection.html) | [Notebook](exercises_notebook/3_exercise.ipynb) /  [HTML](exercises_html/3_exercise.ipynb) |  | [Reading](misc/3_reading.pdf)|
 | 4 | Supervised ML | | | | |
 | 5 | Unsupervised ML | | | | |
 | 6 | Fortolkning af modeller | | | | |
