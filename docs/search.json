@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Machine learning course for VIVE",
     "section": "",
-    "text": "Session #\nTopic\nLecture\nExercises\nSolutions\nDocuments\n\n\n\n\n\n1\nIntroduktion til kurset og ML\nSlides\nSee slides\nN/A\nAnaconda guide\n\n\n\n2\nIndførsel til Python\nSlides\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n3\nModel- og hyperparameterselektion\nSlides\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n4\nSupervised ML\nSlides\nNotebook / HTML\n\nReading\n\n\n\n5\nUnsupervised ML\n\n\n\n\n\n\n\n6\nFortolkning af modeller\n\n\n\n\n\n\n\n7\nAlgorithmic audits\n\n\n\n\n\n\n\n8\nKausalitet – Træbaserede modeller\n\n\n\n\n\n\n\n9\nKausalitet - Double machine learning"
+    "text": "Session #\nTopic\nLecture\nExercises\nSolutions\nDocuments\n\n\n\n\n\n1\nIntroduktion til kurset og ML\nHTML / PDF\nSee slides\nN/A\nAnaconda guide\n\n\n\n2\nIndførsel til Python\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n3\nModel- og hyperparameterselektion\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n4\nSupervised ML\nHTML / PDF\nNotebook / HTML\n\nReading\n\n\n\n5\nUnsupervised ML\n\n\n\n\n\n\n\n6\nFortolkning af modeller\n\n\n\n\n\n\n\n7\nAlgorithmic audits\n\n\n\n\n\n\n\n8\nKausalitet – Træbaserede modeller\n\n\n\n\n\n\n\n9\nKausalitet - Double machine learning"
   },
   {
     "objectID": "exercises_html/2_exercise.html",
