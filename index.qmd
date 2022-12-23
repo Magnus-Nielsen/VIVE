@@ -4,7 +4,7 @@
 | 2	| Indførsel til Python | [HTML](slides/2_python.html) /  [PDF](slides/2_python.pdf) | [Notebook](exercises_notebook/2_exercise.ipynb) /  [HTML](exercises_html/2_exercise.ipynb) | [Notebook](exercises_notebook/2_exercise_sol.ipynb) / [HTML](exercises_html/2_exercise_sol.ipynb) | [Reading](misc/2_reading.pdf)|
 | 3 | Model- og hyperparameterselektion	 | [HTML](slides/3_model_selection.html) /  [PDF](slides/3_model_selection.pdf) | [Notebook](exercises_notebook/3_exercise.ipynb) /  [HTML](exercises_html/3_exercise.ipynb) | [Notebook](exercises_notebook/3_exercise_sol.ipynb) / [HTML](exercises_html/3_exercise_sol.ipynb) | [Reading](misc/3_reading.pdf)|
 | 4 | Supervised ML | [HTML](slides/4_supervised_learning.html) / [PDF](slides/4_supervised_learning.pdf)  | [Notebook](exercises_notebook/4_exercise.ipynb) /  [HTML](exercises_html/4_exercise.ipynb) | [Notebook](exercises_notebook/4_exercise_sol.ipynb) / [HTML](exercises_html/4_exercise_sol.ipynb)  | [Reading](misc/4_reading.pdf)|
-| 5 | Unsupervised ML | | | | |
+| 5 | Unsupervised ML | [HTML](slides/5_unsupervised_learning.html) / [PDF](slides/5_unsupervised_learning.pdf)  | [Notebook](exercises_notebook/5_exercise.ipynb) /  [HTML](exercises_html/5_exercise.ipynb) |  | [Reading](misc/5_reading.pdf)|
 | 6 | Fortolkning af modeller | | | | |
 | 7 | Algorithmic audits | | | | |
 | 8 | Kausalitet – Træbaserede modeller	| | | | |
