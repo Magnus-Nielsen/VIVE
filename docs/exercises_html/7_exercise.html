@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Machine learning course for VIVE – exercise</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../images/favicon.ico" rel="icon">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Machine learning course for VIVE</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+
+<section id="exercise-set-7-fairness" class="level1">
+<h1>Exercise Set 7: Fairness</h1>
+<p>In this exercise set, we will be looking at fairness.</p>
+<p>We first look at fairness with models, focusing first on how to examine a model in relation to fairness criteria (assesment), and then how to post-process a model to make it more fair according to a specific criteria (mitigation).</p>
+<p>After this we look at admission to Berkeley, a classic example demonstrating a fairness analysis with only historical data and no model.</p>
+<section id="fairness-with-models" class="level2">
+<h2 class="anchored" data-anchor-id="fairness-with-models">Fairness with models</h2>
+<p>In this exercise we will utilize the same dataset as in session 4, Supervised Learning, but this time we will be using the full dataset. The dataset is about classification of high income people, namely the <a href="https://archive.ics.uci.edu/ml/datasets/Census+Income">Census Income Data Set from the UCI Machine Learning Repository</a>.</p>
+<p>A large part of these exercises will be dedicated to getting familiar with <a href="https://fairlearn.org/v0.8/user_guide/index.html">fairlearn</a>, which is a package that makes working with fair machine learning easier. In addition to documenting their code, they also have a large amount of examples and text regarding fairness in machine learning in their User Guide.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.1</strong></p>
+<p>Based on the code below, what is <span class="math inline">\(Y, X, A\)</span> using the terminology from the lecture? Is <span class="math inline">\(A\)</span> part of <span class="math inline">\(X\)</span>, which we will build our model on? If yes, is this required?</p>
+</blockquote>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fairlearn.datasets <span class="im">import</span> fetch_adult</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> fetch_adult(as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(data.data)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (data.target <span class="op">==</span> <span class="st">'&gt;50K'</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sex <span class="op">=</span> data.data[<span class="st">'sex'</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data description</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.DESCR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>**Author**: Ronny Kohavi and Barry Becker  
+**Source**: [UCI](https://archive.ics.uci.edu/ml/datasets/Adult) - 1996  
+**Please cite**: Ron Kohavi, "Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid", Proceedings of the Second International Conference on Knowledge Discovery and Data Mining, 1996  
+
+Prediction task is to determine whether a person makes over 50K a year. Extraction was done by Barry Becker from the 1994 Census database. A set of reasonably clean records was extracted using the following conditions: ((AAGE&gt;16) &amp;&amp; (AGI&gt;100) &amp;&amp; (AFNLWGT&gt;1)&amp;&amp; (HRSWK&gt;0))
+
+This is the original version from the UCI repository, with training and test sets merged.
+
+### Variable description
+
+Variables are all self-explanatory except __fnlwgt__. This is a proxy for the demographic background of the people: "People with similar demographic characteristics should have similar weights". This similarity-statement is not transferable across the 51 different states.
+
+Description from the donor of the database: 
+
+The weights on the CPS files are controlled to independent estimates of the civilian noninstitutional population of the US.  These are prepared monthly for us by Population Division here at the Census Bureau. We use 3 sets of controls. These are:
+1.  A single cell estimate of the population 16+ for each state.
+2.  Controls for Hispanic Origin by age and sex.
+3.  Controls by Race, age and sex.
+
+We use all three sets of controls in our weighting program and "rake" through them 6 times so that by the end we come back to all the controls we used. The term estimate refers to population totals derived from CPS by creating "weighted tallies" of any specified socio-economic characteristics of the population. People with similar demographic characteristics should have similar weights. There is one important caveat to remember about this statement. That is that since the CPS sample is actually a collection of 51 state samples, each with its own probability of selection, the statement only applies within state.
+
+
+### Relevant papers  
+
+Ronny Kohavi and Barry Becker. Data Mining and Visualization, Silicon Graphics.  
+e-mail: ronnyk '@' live.com for questions.
+
+Downloaded from openml.org.</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Index(['age', 'workclass', 'fnlwgt', 'education', 'education-num',
+       'marital-status', 'occupation', 'relationship', 'race', 'sex',
+       'capital-gain', 'capital-loss', 'hours-per-week', 'native-country'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Target value counts'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_true.value_counts())</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Sex value counts'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sex.value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Target value counts
+0    37155
+1    11687
+Name: class, dtype: int64
+
+Sex value counts
+Male      32650
+Female    16192
+Name: sex, dtype: int64</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.2</strong></p>
+<p>We will first create a model to analyze. Create a Decision Tree Classifier with <code>max_depth=5</code> and <code>min_samples_split=50</code> and fit it on the data. On the basis of this model, predict the outcomes for the same data.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A large part of fairness assesment is looking at metrics across sensitive features. To aid in this, <code>fairlearn</code> has a concept which is called a <code>MetricFrame</code>, which aids in this.</p>
+<p>We will start with perhaps the most basic fairness assesment, looking at performance differences across a metric.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.3</strong></p>
+<p>Create a <code>MetricFrame</code> with the metric <code>accuracy_score</code> you know from <code>sklearn.metrics</code> &gt;<em>Hints:</em> &gt; &gt; <a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching! &gt; &gt; Creating the <code>MetricFrame</code> itself won’t return any output</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="assesment" class="level3">
+<h3 class="anchored" data-anchor-id="assesment">Assesment</h3>
+<p>It’s nice to work with the <code>MetricFrame</code> because it lets us look at performance across the sensitive attribute quickly.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.4</strong></p>
+<p>Report the overall accuracy and accuracy by group. Does the model perform equally well across sex?</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>The <code>MetricFrame</code> has some useful methods</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Having now looked at accuracy across sex, we want to move closer to the fairness criteria independence and separation.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.5</strong></p>
+<p>In addition to the accuracy score, you should now also include the selection rate, false positive rate and false negative rate in your <code>MetricFrame</code>. Report them overall and across sex.</p>
+<p>Does the model satisfy independence, separation or both? Was this expected?</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>You can input a dictionary where the keys are names and the values are metrics to the <code>MetricFrame</code></p>
+<p>All three metrics are available in <code>fairlearn.metrics</code></p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When reporting multiple metrics, it can sometimes become hard to maintain an overview of the differences and ratios across the sensitive attribute, but luckily <code>MetricFrame</code> can help us with this.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.5</strong></p>
+<p>Report the absolute differences and ratios across sex across the sensitive feature.</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>The <code>MetricFrame</code> has some useful methods</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, many people find figures nicer to look at than numbers. Let’s create one!</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.6</strong></p>
+<p>Create a bar plot of the different metrics across sex.</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>The <code>MetricFrame.by_group</code> is a <code>DataFrame</code>, which means it support bar plots through <code>plot.bar</code>.</p>
+<p>To achieve a nicer bar plot, you can try changing the following keywords: <code>subplots</code>, <code>layout</code>, <code>legend</code>, <code>figsize</code> and <code>title</code></p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mitigation" class="level3">
+<h3 class="anchored" data-anchor-id="mitigation">Mitigation</h3>
+<p>To mitigate fairness concerns, we will utilize the <code>ThresholdOptimizer</code> in <code>fairlearn.postprocessing</code>, which is based on <a href="https://proceedings.neurips.cc/paper/2016/file/9d2682367c3935defcb1f9e247a97c0d-Paper.pdf">Hardt, M., Price, E., &amp; Srebro, N. (2016). Equality of opportunity in supervised learning. Advances in neural information processing systems, 29.</a>. The idea is the one we discussed during the lecture: Using a combination of different thresholds and random classifiers, different fairness criteria can be satisfied, but for more information you should read the paper!</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.7</strong></p>
+<p>Post-process the classifier we have created to satisfy demographic parity whilst optimizing accuracy.</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>The <code>fairlearn</code> follows the <code>sklearn</code> syntax with <code>.fit</code> and <code>.predict</code></p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.6</strong></p>
+<p>Examine the metrics of the post-processed classifier. Does it satisfy independence, and at what selection rate? Has it influenced any of the other metrics? Why is this?</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>Use any method of vizualising metrics across groups that you like</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise 1.7</strong></p>
+<p>Repeat the two previous exercises, but now satisfying separation.</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><a href="https://fairlearn.org/main/api_reference/index.html">The API Docs</a> are available online and support searching!</p>
+<p>separation is also sometimes known as equalized odds.</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This ends our voyage with <code>fairlearn</code>, but note that <code>fairlearn</code> also has implementations of <a href="https://fairlearn.org/v0.8/user_guide/mitigation.html#reductions">reduction algorithms</a> (which support more fairness constraints and regression fairness) and <a href="https://fairlearn.org/v0.8/user_guide/assessment/intersecting_groups.html">intersectionality and control features</a>.</p>
+</section>
+</section>
+<section id="fairness-without-models" class="level2">
+<h2 class="anchored" data-anchor-id="fairness-without-models">Fairness without models</h2>
+<p>Sometimes you do not have access to the full modelling process, and merely have observed outcomes. A such example is given the <code>Berkeley_Admissions_Data.csv</code> dataset, which is a three-way table that presents admissions data at the University of California, Berkeley in 1973 according to the variables department (A, B, C, D, E, F), gender (male, female), and outcome (admitted, denied) encoded as Yes and No.&nbsp;In this case, we can still assess fairness in some ways.</p>
+<p>The exercise is inspired by a similar exercise by my colleague <a href="https://www.robertasinatra.com/">Roberta Sinatra</a>, who also supplied the data, and is based on the original paper <a href="https://homepage.stat.uiowa.edu/~mbognar/1030/Bickel-Berkeley.pdf">Bickel, P. J., Hammel, E. A., &amp; O’Connell, J. W. (1975). Sex Bias in Graduate Admissions: Data from Berkeley: Measuring bias is harder than is usually assumed, and the evidence is sometimes contrary to expectation. Science, 187(4175), 398-404.</a>.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 2.1</strong></p>
+<p>Load and look at the dataset</p>
+<blockquote class="blockquote">
+<p><em>Hints:</em></p>
+<p><code>pandas</code> supports reading many file types.</p>
+</blockquote>
+</blockquote>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Berkeley_Admissions_Data.csv"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Dept</th>
+      <th>Male Yes</th>
+      <th>Male No</th>
+      <th>Female Yes</th>
+      <th>Female No</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>512</td>
+      <td>313</td>
+      <td>89</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B</td>
+      <td>313</td>
+      <td>207</td>
+      <td>17</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C</td>
+      <td>120</td>
+      <td>205</td>
+      <td>202</td>
+      <td>391</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>D</td>
+      <td>138</td>
+      <td>279</td>
+      <td>131</td>
+      <td>244</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E</td>
+      <td>53</td>
+      <td>138</td>
+      <td>94</td>
+      <td>299</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>F</td>
+      <td>22</td>
+      <td>351</td>
+      <td>24</td>
+      <td>317</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>All</td>
+      <td>1158</td>
+      <td>1493</td>
+      <td>557</td>
+      <td>1278</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise 2.2</strong></p>
+<p>Focusing on Berkeley overall, did their admissions suffer from gender bias?</p>
+<p>Hints: &gt; Subset the row pertaining to all departments &gt; &gt; What fairness metrics can you calculate with the given information? &gt; &gt; The code snippet <code>df["new_col"] = df.apply(lambda x: x["col1"] + x["col2"], axis = 1)</code> creates a new column called <code>new_col</code> which is adds together <code>x["col1"] + x["col2"]</code>, which can also be used in combinations with other common operators such as <code>/</code>, <code>-</code> and <code>*</code>. There’s an example in exercise 2.3 and code for a plot &gt; &gt;</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise 2.3</strong></p>
+<p>Now perform a similar analysis within each department. Do you maintain your conclusion from exercise 2.2?</p>
+<p>Hints: &gt; Subsets the rows pertaining to each of the department &gt; &gt; The code beneath creates a plot with amount of applicants per department. Perhaps this code could be amended to create other plots, or aid in a discussion. &gt; &gt; Do you find any evidence of <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s paradox</a>?</p>
+</blockquote>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate amount</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"M_num"</span>] <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">"Male Yes"</span>] <span class="op">+</span> x[<span class="st">"Male No"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"F_num"</span>] <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">"Female Yes"</span>] <span class="op">+</span> x[<span class="st">"Female No"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot for first six rows (.iloc[0:6])</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"M_num"</span>, <span class="st">"F_num"</span>]].iloc[<span class="dv">0</span>:<span class="dv">6</span>].plot.bar(title<span class="op">=</span><span class="st">"Number of applicants per department"</span>, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                                                      rot<span class="op">=</span><span class="dv">0</span>, ylabel<span class="op">=</span><span class="st">"Number of applicants"</span>, xlabel<span class="op">=</span><span class="st">"Departments"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>])</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>ax.legend([<span class="st">"Male"</span>, <span class="st">"Female"</span>])</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="7_exercise_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
