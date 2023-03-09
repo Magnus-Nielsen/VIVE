@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Machine learning course for VIVE",
     "section": "",
-    "text": "Session #\nTopic\nLecture\nExercises\nSolutions\nDocuments\n\n\n\n\n\n1\nIntroduction to course and machine learning\nHTML / PDF\nSee slides\nN/A\nAnaconda guide\n\n\n\n2\nIntroduction to Python\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n3\nModel and hyperparameter selection\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n4\nSupervised ML\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n5\nUnsupervised ML\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n6\nExplainability\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n7\nFairness\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n8\nCausality – Heterogeneous treatment effects\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading\n\n\n\n9\nCausality – Double machine learning\nHTML / PDF\nNotebook / HTML\nNotebook / HTML\nReading"
+    "text": "Download website\nThe full course website can be downloaded here. To access the website, you should first extract the files and then launch the file index.html, which opens a local copy of the website."
   },
   {
     "objectID": "exercises_html/2_exercise.html",
